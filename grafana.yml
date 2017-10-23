@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  grafana:
+    image: grafana/grafana
+    environment:
+        - "GF_SECURITY_ADMIN_PASSWORD=secret"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      labels:
+        deployer.port: 3000
+        deployer.publishedport: 31000
+        deployer.domain: grafana.example.com:31000
