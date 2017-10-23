@@ -1,0 +1,25 @@
+# ORIGINAL: https://raw.githubusercontent.com/play-with-docker/stacks/master/wordpress/latest/stack.yml
+version: '3.1'
+services:
+   db:
+     image: mariadb:latest
+     volumes:
+       - db_data:/var/lib/mysql
+     environment:
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+
+   wordpress:
+     image: wordpress:latest
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+     deploy:
+       labels:
+         deployer.port: 80
+         deployer.domain: wp.example.com
+volumes:
+    db_data:
