@@ -11,6 +11,5 @@ services:
         window: 120s
       labels:
         deployer.port: 80
-        deployer.publishedport: 8192
-        deployer.domain: nginx.example.com:8192
+        deployer.domain: nginx.example.com
  
